@@ -1,11 +1,26 @@
 import 'package:flutter/material.dart';
 
-class CalculationPage extends StatelessWidget {
+class CalculationPage extends StatefulWidget {
   const CalculationPage({ Key? key }) : super(key: key);
   
   @override
+  _CalculationPage createState() => _CalculationPage();
+}
+
+class _CalculationPage extends State<CalculationPage> {
+  String _result = "0";
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    
+
+    void setResult(String zahl) {
+      setState(() {
+        _result = zahl;
+      });
+  }
+    
+  
     return Scaffold(
       backgroundColor: Colors.grey[900],
 /*       appBar: AppBar(
@@ -23,7 +38,7 @@ class CalculationPage extends StatelessWidget {
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.white),
               child: Align(
                 alignment: Alignment.centerRight,
-                child: Text("0", style: TextStyle(fontSize: 80, fontWeight: FontWeight.bold),)
+                child: Text(_result, style: TextStyle(fontSize: 80, fontWeight: FontWeight.bold),)
                 ),
             )),
             Flexible(
@@ -39,7 +54,7 @@ class CalculationPage extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
                       FloatingActionButton(onPressed: (){}, backgroundColor: Colors.pink[100],child: Text("AC", style: TextStyle(fontSize: 30, color: Colors.black),),),
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.green[100],child: Text("()", style: TextStyle(fontSize: 30, color: Colors.black),),),
+                      FloatingActionButton(onPressed: (){setResult("()");}, backgroundColor: Colors.green[100],child: Text("()", style: TextStyle(fontSize: 30, color: Colors.black),),),
                       FloatingActionButton(onPressed: (){}, backgroundColor: Colors.green[100],child: Text("%", style: TextStyle(fontSize: 30, color: Colors.black),),),
                       FloatingActionButton(onPressed: (){}, backgroundColor: Colors.green[100],child: Text("%", style: TextStyle(fontSize: 30, color: Colors.black),),),
                       FloatingActionButton(onPressed: (){}, backgroundColor: Colors.grey[850],child: Text("7", style: TextStyle(fontSize: 30,),),),
