@@ -7,22 +7,23 @@ class CalculationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
+      backgroundColor: Colors.grey[900],
+/*       appBar: AppBar(
         title: const Text("Calculator"),
         centerTitle: true,
-        backgroundColor: Colors.blue,
-      ),
+        backgroundColor: Colors.grey[900],
+      ), */
       body: Column(
         children: [
           Flexible(
             flex: 1,
             child: Container(
-              color: Colors.white,
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.white),
             )),
             Flexible(
               flex: 3,
               child: Container(
-                color: Colors.grey[900],
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.grey[900],),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 25, left: 9, right: 9),
                   child: GridView.count(
