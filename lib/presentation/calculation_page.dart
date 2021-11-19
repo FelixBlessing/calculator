@@ -18,7 +18,13 @@ class CalculationPage extends StatelessWidget {
           Flexible(
             flex: 1,
             child: Container(
+              height: double.infinity,
+              width: double.infinity,
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.white),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Text("0", style: TextStyle(fontSize: 80, fontWeight: FontWeight.bold),)
+                ),
             )),
             Flexible(
               flex: 3,
