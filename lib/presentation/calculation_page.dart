@@ -8,15 +8,28 @@ class CalculationPage extends StatefulWidget {
 }
 
 class _CalculationPage extends State<CalculationPage> {
-  String _result = "0";
+  String _result = "";
+  double zahl1 = 0;
+  double zahl2 = 0;
+  String operator = "";
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     
 
-    void setResult(String zahl) {
+    void setResult(character) {
       setState(() {
-        _result = zahl;
+        if(character == "AC") {
+          _result = "";
+        }
+        else if (character == "()");
+        else{
+          int zahl = int.tryParse(character)!;
+          if(zahl is int){
+            print("Integer");
+          }
+          _result += character;
+        }
+        
       });
   }
     
@@ -38,7 +51,7 @@ class _CalculationPage extends State<CalculationPage> {
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.white),
               child: Align(
                 alignment: Alignment.centerRight,
-                child: Text(_result, style: TextStyle(fontSize: 80, fontWeight: FontWeight.bold),)
+                child: Text(_result, style: const TextStyle(fontSize: 80, fontWeight: FontWeight.bold),)
                 ),
             )),
             Flexible(
@@ -53,26 +66,26 @@ class _CalculationPage extends State<CalculationPage> {
                     crossAxisSpacing: 12,
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.pink[100],child: Text("AC", style: TextStyle(fontSize: 30, color: Colors.black),),),
+                      FloatingActionButton(onPressed: (){setResult("AC");}, backgroundColor: Colors.pink[100],child: Text("AC", style: TextStyle(fontSize: 30, color: Colors.black),),),
                       FloatingActionButton(onPressed: (){setResult("()");}, backgroundColor: Colors.green[100],child: Text("()", style: TextStyle(fontSize: 30, color: Colors.black),),),
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.green[100],child: Text("%", style: TextStyle(fontSize: 30, color: Colors.black),),),
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.green[100],child: Text("%", style: TextStyle(fontSize: 30, color: Colors.black),),),
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.grey[850],child: Text("7", style: TextStyle(fontSize: 30,),),),
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.grey[850],child: Text("8", style: TextStyle(fontSize: 30,),),),
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.grey[850],child: Text("9", style: TextStyle(fontSize: 30,),),),
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.green[100],child: Text("x", style: TextStyle(fontSize: 30, color: Colors.black),),),
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.grey[850],child: Text("4", style: TextStyle(fontSize: 30,),),),
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.grey[850],child: Text("5", style: TextStyle(fontSize: 30,),),),
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.grey[850],child: Text("6", style: TextStyle(fontSize: 30,),),),
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.green[100],child: Text("-", style: TextStyle(fontSize: 30, color: Colors.black),),),
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.grey[850],child: Text("1", style: TextStyle(fontSize: 30,),),),
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.grey[850],child: Text("2", style: TextStyle(fontSize: 30,),),),
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.grey[850],child: Text("3", style: TextStyle(fontSize: 30,),),),
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.green[100],child: Text("+", style: TextStyle(fontSize: 30, color: Colors.black),),),
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.grey[850],child: Text("0", style: TextStyle(fontSize: 30,),),),
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.grey[850],child: Text(",", style: TextStyle(fontSize: 30,),),),
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.grey[850],child: Icon(Icons.backspace_outlined),),
-                      FloatingActionButton(onPressed: (){}, backgroundColor: Colors.blue[50],child: Text("=", style: TextStyle(fontSize: 30, color: Colors.black),),),
+                      FloatingActionButton(onPressed: (){setResult("%");}, backgroundColor: Colors.green[100],child: Text("%", style: TextStyle(fontSize: 30, color: Colors.black),),),
+                      FloatingActionButton(onPressed: (){setResult("/");}, backgroundColor: Colors.green[100],child: Text("/", style: TextStyle(fontSize: 30, color: Colors.black),),),
+                      FloatingActionButton(onPressed: (){setResult("7");}, backgroundColor: Colors.grey[850],child: Text("7", style: TextStyle(fontSize: 30,),),),
+                      FloatingActionButton(onPressed: (){setResult("8");}, backgroundColor: Colors.grey[850],child: Text("8", style: TextStyle(fontSize: 30,),),),
+                      FloatingActionButton(onPressed: (){setResult("9");}, backgroundColor: Colors.grey[850],child: Text("9", style: TextStyle(fontSize: 30,),),),
+                      FloatingActionButton(onPressed: (){setResult("x");}, backgroundColor: Colors.green[100],child: Text("x", style: TextStyle(fontSize: 30, color: Colors.black),),),
+                      FloatingActionButton(onPressed: (){setResult("4");}, backgroundColor: Colors.grey[850],child: Text("4", style: TextStyle(fontSize: 30,),),),
+                      FloatingActionButton(onPressed: (){setResult("5");}, backgroundColor: Colors.grey[850],child: Text("5", style: TextStyle(fontSize: 30,),),),
+                      FloatingActionButton(onPressed: (){setResult("6");}, backgroundColor: Colors.grey[850],child: Text("6", style: TextStyle(fontSize: 30,),),),
+                      FloatingActionButton(onPressed: (){setResult("-");}, backgroundColor: Colors.green[100],child: Text("-", style: TextStyle(fontSize: 30, color: Colors.black),),),
+                      FloatingActionButton(onPressed: (){setResult("1");}, backgroundColor: Colors.grey[850],child: Text("1", style: TextStyle(fontSize: 30,),),),
+                      FloatingActionButton(onPressed: (){setResult("2");}, backgroundColor: Colors.grey[850],child: Text("2", style: TextStyle(fontSize: 30,),),),
+                      FloatingActionButton(onPressed: (){setResult("3");}, backgroundColor: Colors.grey[850],child: Text("3", style: TextStyle(fontSize: 30,),),),
+                      FloatingActionButton(onPressed: (){setResult("+");}, backgroundColor: Colors.green[100],child: Text("+", style: TextStyle(fontSize: 30, color: Colors.black),),),
+                      FloatingActionButton(onPressed: (){setResult("0");}, backgroundColor: Colors.grey[850],child: Text("0", style: TextStyle(fontSize: 30,),),),
+                      FloatingActionButton(onPressed: (){setResult(",");}, backgroundColor: Colors.grey[850],child: Text(",", style: TextStyle(fontSize: 30,),),),
+                      FloatingActionButton(onPressed: (){setResult("Backspace");}, backgroundColor: Colors.grey[850],child: Icon(Icons.backspace_outlined),),
+                      FloatingActionButton(onPressed: (){setResult("=");}, backgroundColor: Colors.blue[50],child: Text("=", style: TextStyle(fontSize: 30, color: Colors.black),),),
                     ],
                     ),
                 )
