@@ -1,5 +1,6 @@
 import 'package:calculator/application/calculator/bloc/calculation_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CalculationPage extends StatelessWidget {
   const CalculationPage({Key? key}) : super(key: key);
@@ -23,11 +24,13 @@ class CalculationPage extends StatelessWidget {
                     child: BlocBuilder<CalculatorBloc, CalculationState>(
                       bloc: BlocProvider.of<CalculatorBloc>(context),
                       builder: (context, state) {
+                        if(state is CalculationInputState){
                         return Text(
-                          _result,
-                          style: const TextStyle(
+                          state.number,
+                          style: TextStyle(
                               fontSize: 80, fontWeight: FontWeight.bold),
-                        );
+                        );}
+                        return const Placeholder();
                       },
                     )),
               )),
@@ -48,7 +51,7 @@ class CalculationPage extends StatelessWidget {
                       children: [
                         FloatingActionButton(
                           onPressed: () {
-                            setResult("AC");
+                            context.read<CalculatorBloc>().add(ClearPressedEvent());
                           },
                           backgroundColor: Colors.pink[100],
                           child: Text(
@@ -57,9 +60,7 @@ class CalculationPage extends StatelessWidget {
                           ),
                         ),
                         FloatingActionButton(
-                          onPressed: () {
-                            setResult("()");
-                          },
+                          onPressed: () {context.read<CalculatorBloc>().add(ClearPressedEvent());},
                           backgroundColor: Colors.green[100],
                           child: Text(
                             "()",
@@ -67,9 +68,7 @@ class CalculationPage extends StatelessWidget {
                           ),
                         ),
                         FloatingActionButton(
-                          onPressed: () {
-                            setResult("%");
-                          },
+                          onPressed: () {},
                           backgroundColor: Colors.green[100],
                           child: Text(
                             "%",
@@ -78,7 +77,7 @@ class CalculationPage extends StatelessWidget {
                         ),
                         FloatingActionButton(
                           onPressed: () {
-                            setResult("/");
+                            context.read<CalculatorBloc>().add(OperatorPressedEvent(operator: "/"));
                           },
                           backgroundColor: Colors.green[100],
                           child: Text(
@@ -88,7 +87,7 @@ class CalculationPage extends StatelessWidget {
                         ),
                         FloatingActionButton(
                           onPressed: () {
-                            setResult("7");
+                            context.read<CalculatorBloc>().add(NumberPressedEvent(number: "7"));
                           },
                           backgroundColor: Colors.grey[850],
                           child: Text(
@@ -100,7 +99,7 @@ class CalculationPage extends StatelessWidget {
                         ),
                         FloatingActionButton(
                           onPressed: () {
-                            setResult("8");
+                            context.read<CalculatorBloc>().add(NumberPressedEvent(number: "8"));
                           },
                           backgroundColor: Colors.grey[850],
                           child: Text(
@@ -112,7 +111,7 @@ class CalculationPage extends StatelessWidget {
                         ),
                         FloatingActionButton(
                           onPressed: () {
-                            setResult("9");
+                            context.read<CalculatorBloc>().add(NumberPressedEvent(number: "9"));
                           },
                           backgroundColor: Colors.grey[850],
                           child: Text(
@@ -124,7 +123,7 @@ class CalculationPage extends StatelessWidget {
                         ),
                         FloatingActionButton(
                           onPressed: () {
-                            setResult("x");
+                            context.read<CalculatorBloc>().add(OperatorPressedEvent(operator: "x"));
                           },
                           backgroundColor: Colors.green[100],
                           child: Text(
@@ -134,7 +133,7 @@ class CalculationPage extends StatelessWidget {
                         ),
                         FloatingActionButton(
                           onPressed: () {
-                            setResult("4");
+                            context.read<CalculatorBloc>().add(NumberPressedEvent(number: "4"));
                           },
                           backgroundColor: Colors.grey[850],
                           child: Text(
@@ -146,7 +145,7 @@ class CalculationPage extends StatelessWidget {
                         ),
                         FloatingActionButton(
                           onPressed: () {
-                            setResult("5");
+                            context.read<CalculatorBloc>().add(NumberPressedEvent(number: "5"));
                           },
                           backgroundColor: Colors.grey[850],
                           child: Text(
@@ -158,7 +157,7 @@ class CalculationPage extends StatelessWidget {
                         ),
                         FloatingActionButton(
                           onPressed: () {
-                            setResult("6");
+                            context.read<CalculatorBloc>().add(NumberPressedEvent(number: "6"));
                           },
                           backgroundColor: Colors.grey[850],
                           child: Text(
@@ -170,7 +169,7 @@ class CalculationPage extends StatelessWidget {
                         ),
                         FloatingActionButton(
                           onPressed: () {
-                            setResult("-");
+                            context.read<CalculatorBloc>().add(OperatorPressedEvent(operator: "-"));
                           },
                           backgroundColor: Colors.green[100],
                           child: Text(
@@ -180,7 +179,7 @@ class CalculationPage extends StatelessWidget {
                         ),
                         FloatingActionButton(
                           onPressed: () {
-                            setResult("1");
+                            context.read<CalculatorBloc>().add(NumberPressedEvent(number: "1"));;
                           },
                           backgroundColor: Colors.grey[850],
                           child: Text(
@@ -192,7 +191,7 @@ class CalculationPage extends StatelessWidget {
                         ),
                         FloatingActionButton(
                           onPressed: () {
-                            setResult("2");
+                            context.read<CalculatorBloc>().add(NumberPressedEvent(number: "2"));
                           },
                           backgroundColor: Colors.grey[850],
                           child: Text(
@@ -204,7 +203,7 @@ class CalculationPage extends StatelessWidget {
                         ),
                         FloatingActionButton(
                           onPressed: () {
-                            setResult("3");
+                            context.read<CalculatorBloc>().add(NumberPressedEvent(number: "3"));
                           },
                           backgroundColor: Colors.grey[850],
                           child: Text(
@@ -216,7 +215,7 @@ class CalculationPage extends StatelessWidget {
                         ),
                         FloatingActionButton(
                           onPressed: () {
-                            setResult("+");
+                            context.read<CalculatorBloc>().add(OperatorPressedEvent(operator: "+"));
                           },
                           backgroundColor: Colors.green[100],
                           child: Text(
@@ -226,7 +225,7 @@ class CalculationPage extends StatelessWidget {
                         ),
                         FloatingActionButton(
                           onPressed: () {
-                            setResult("0");
+                            context.read<CalculatorBloc>().add(NumberPressedEvent(number: "0"));
                           },
                           backgroundColor: Colors.grey[850],
                           child: Text(
@@ -237,9 +236,7 @@ class CalculationPage extends StatelessWidget {
                           ),
                         ),
                         FloatingActionButton(
-                          onPressed: () {
-                            setResult(",");
-                          },
+                          onPressed: () {},
                           backgroundColor: Colors.grey[850],
                           child: Text(
                             ",",
@@ -249,15 +246,13 @@ class CalculationPage extends StatelessWidget {
                           ),
                         ),
                         FloatingActionButton(
-                          onPressed: () {
-                            setResult("Backspace");
-                          },
+                          onPressed: () {},
                           backgroundColor: Colors.grey[850],
                           child: Icon(Icons.backspace_outlined),
                         ),
                         FloatingActionButton(
                           onPressed: () {
-                            setResult("=");
+                            context.read<CalculatorBloc>().add(ResultPressedEvent());
                           },
                           backgroundColor: Colors.blue[50],
                           child: Text(

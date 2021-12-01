@@ -4,8 +4,9 @@ part of 'calculation_bloc.dart';
 abstract class CalculationEvent {}
 
 class NumberPressedEvent extends CalculationEvent{
-  final int number;
+  final String number;
   NumberPressedEvent({required this.number});
+
 }
 
 class OperatorPressedEvent extends CalculationEvent{
