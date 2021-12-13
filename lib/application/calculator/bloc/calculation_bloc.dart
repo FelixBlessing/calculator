@@ -12,8 +12,9 @@ class CalculatorBloc extends Bloc<CalculationEvent, CalculationState> {
     String number2 = "";
     String operator = "";
     Logic calculator;
+    bool commaLocked = false;
     on<NumberPressedEvent>((event, emit){
-      if(operator!="" && number == operator){
+      if(operator != "" && number == operator){
         number = event.number;
         emit(CalculationInputState(number: number));
 
@@ -30,6 +31,7 @@ class CalculatorBloc extends Bloc<CalculationEvent, CalculationState> {
       number1 = "";
       number2 = "";
       operator = "";
+      commaLocked = false;
       emit(CalculationInputState(number: number));
     }
     );
@@ -38,6 +40,7 @@ class CalculatorBloc extends Bloc<CalculationEvent, CalculationState> {
       operator = event.operator;
       number1 = number;
       number = operator;
+      commaLocked = false;
       emit(CalculationInputState(number: number));
     });
 
@@ -45,8 +48,28 @@ class CalculatorBloc extends Bloc<CalculationEvent, CalculationState> {
       calculator = Logic();
       number2 = number;
       number = calculator.calculate(number1, number2, operator);
+      commaLocked = false;
       emit(CalculationInputState(number: number));
     }
     );
+
+    on<CommaPressedEvent>((event, emit){
+      if(number != "" && commaLocked == false){
+        number += ".";
+        commaLocked = true;
+        emit(CalculationInputState(number: number));
+      }
+    });
+
+    on<ReturnPressedEvent>((event, emit){
+      if (number != null && number.length > 0) {
+        if(number.substring(number.length -1, number.length) == "."){
+          commaLocked = false;
+        }
+        number = number.substring(0, number.length - 1);
+
+      }
+      emit(CalculationInputState(number: number));
+    });
   }
 }

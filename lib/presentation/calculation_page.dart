@@ -63,12 +63,14 @@ class CalculationPage extends StatelessWidget {
                           onPressed: () {context.read<CalculatorBloc>().add(ClearPressedEvent());},
                           backgroundColor: Colors.green[100],
                           child: Text(
-                            "()",
+                            "",
                             style: TextStyle(fontSize: 30, color: Colors.black),
                           ),
                         ),
                         FloatingActionButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.read<CalculatorBloc>().add(OperatorPressedEvent(operator: "%"));
+                          },
                           backgroundColor: Colors.green[100],
                           child: Text(
                             "%",
@@ -236,17 +238,21 @@ class CalculationPage extends StatelessWidget {
                           ),
                         ),
                         FloatingActionButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.read<CalculatorBloc>().add(CommaPressedEvent());
+                          },
                           backgroundColor: Colors.grey[850],
                           child: Text(
-                            ",",
+                            ".",
                             style: TextStyle(
                               fontSize: 30,
                             ),
                           ),
                         ),
                         FloatingActionButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.read<CalculatorBloc>().add(ReturnPressedEvent());
+                          },
                           backgroundColor: Colors.grey[850],
                           child: Icon(Icons.backspace_outlined),
                         ),

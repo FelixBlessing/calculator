@@ -17,3 +17,7 @@ class OperatorPressedEvent extends CalculationEvent{
 class ResultPressedEvent extends CalculationEvent{}
 
 class ClearPressedEvent extends CalculationEvent{}
+
+class CommaPressedEvent extends CalculationEvent{}
+
+class ReturnPressedEvent extends CalculationEvent{}

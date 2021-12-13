@@ -22,6 +22,9 @@ class Logic{
         ergebnis = a/b;
         return ergebnis.toString();
       
+      case "%":
+        ergebnis = a * (b/100);
+        return ergebnis.toString();
       default:
         return ergebnis.toString();
     }
